@@ -1,0 +1,241 @@
+import SwiftUI
+
+
+struct SettingsView: View {
+    
+    @AppStorage("instrument") var instrument: String = "grand"
+    @AppStorage("keyboardVelocity") var keyboardVelocity: Double = 0.7
+    @AppStorage("rolledChord") var rolledChord: Bool = false
+    @AppStorage("metronomeBPM") var metronomeBPM: Double = 90
+    @AppStorage("playModeKey") var playModeKey: String = "C"
+    @AppStorage("keyboardGain") var keyboardGain: Double = 0.0
+    @AppStorage("metronomeGain") var metronomeGain: Double = 0.0
+    
+    @AppStorage("composer") var composerName: String = ""
+    @AppStorage("defaultSongBPM") var defaultSongBPM: Int = 80
+    @AppStorage("defaultSongKey") var defaultSongKey: String = "C"
+    @AppStorage("defaultEditMode") var defaultEditMode: String = "picker"
+    
+    @AppStorage("colorScheme") var appColorScheme: String = "System"
+    @AppStorage("accentColor") var accentColor: String = "Default"
+    
+    @State private var showSubscriptionSheet: Bool = false
+    
+    @Environment(\.appState) private var appState
+    @Environment(\.audio) private var audio
+    @Environment(MIDIManager.self) private var midi
+    @Environment(SubscriptionManager.self) private var subscription
+    @Environment(\.dismiss) private var dismiss
+    
+    var body: some View {
+        
+        Form {
+            Section("Play Mode") {
+                
+                Picker(selection: $instrument) {
+                    ForEach(Instrument.allCases.filter { $0.isChord || $0.isMelodic }, id: \.self) { instrument in
+                        Text(LocalizedStringKey(instrument.description))
+                            .subscriptionIcon(show: instrument.subscriptionRequired)
+                            .tag(instrument.rawValue)
+                    }
+                } label: {
+                    Label("Instrument", systemImage: "pianokeys")
+                }
+                .onSubscriptionGatedChange($showSubscriptionSheet, of: $instrument) {
+                    Instrument(rawValue: $0)!.subscriptionRequired
+                } onAccepted: { newValue in
+                    audio.sampler.loadInstrument(Instrument(rawValue: newValue)!)
+                }
+                
+                Picker(selection: $metronomeBPM) {
+                    ForEach(Constants.bpmRange, id: \.self) { num in
+                        Text(num.description)
+                            .tag(Double(num))
+                    }
+                } label: {
+                    Label("Tempo", systemImage: "metronome")
+                }
+                
+                Picker(selection: $playModeKey) {
+                    ForEach(PitchClass.allCases, id: \.self) { key in
+                        Text(key.description)
+                            .tag(key.rawValue)
+                    }
+                } label: {
+                    Label("Key", systemImage: "music.note")
+                }
+                .onChange(of: playModeKey) { _, newValue in
+                    appState.setPlayModeKey(newValue)
+                }
+                
+                Toggle(isOn: $rolledChord) {
+                    Label("Rolled Chord", systemImage: "music.quarternote.3")
+                }
+                
+                VolumeView(label: Text("Keyboard"), range: -12...6, volume: $keyboardGain)
+                .onChange(of: keyboardGain) { _, newValue in
+                    audio.sampler.setGain(Float(newValue))
+                }
+
+                VolumeView(label: Text("Metronome"), range: -12...6, volume: $metronomeGain)
+                .onChange(of: metronomeGain) { _, newValue in
+                    audio.metronome.setGain(Float(newValue))
+                }
+                
+            }
+            Section("Songwriting Mode") {
+
+                TextField("Composer Name", text: $composerName)
+                Picker(selection: $defaultSongBPM) {
+                    ForEach(Constants.bpmRange, id: \.self) { option in
+                        Text(String(option))
+                            .tag(Double(option))
+                    }
+                } label: {
+                    Label("Tempo", systemImage: "metronome")
+                }
+
+                Picker(selection: $defaultSongKey) {
+                    ForEach(PitchClass.allCases.map { $0.rawValue }, id: \.self) { option in
+                        Text(PitchClass(rawValue: option)?.description ?? "")
+                    }
+                } label: {
+                    Label("Key", systemImage: "music.note")
+                }
+                Picker(selection: $defaultEditMode) {
+                    ForEach(ChordSelectorMode.allCases.map { $0.rawValue }, id: \.self) { option in
+                        Text(option)
+                            .subscriptionIcon(show: option == "advanced")
+                    }
+                } label: {
+                    Label("Edit Mode", systemImage: "pencil.circle")
+                }
+                .onSubscriptionGatedChange($showSubscriptionSheet, of: $defaultEditMode) { $0 == "advanced" }
+            }
+            
+            Section("App") {
+                Picker(selection: $appColorScheme) {
+                    ForEach(["System", "Light", "Dark"], id: \.self) { option in
+                        Text(LocalizedStringKey(option))
+                    }
+                } label: {
+                    Label("Appearance", systemImage: "circle.lefthalf.filled")
+                }
+                
+                Picker(selection: $accentColor) {
+                    ForEach(["Default"] + availableAccentColors.keys.filter { $0 != "Default" }.sorted(), id: \.self) { option in
+                        Text(LocalizedStringKey(option))
+                            .subscriptionIcon(show: !["Default", "Blue"].contains(option))
+                    }
+                } label: {
+                    Label("Theme Color", systemImage: "paintpalette")
+                }
+                .onSubscriptionGatedChange($showSubscriptionSheet, of: $accentColor) {
+                    !["Default", "Blue"].contains($0)
+                }
+
+                NavigationLink(destination: MIDISourcesView(midi: midi)) {
+                    HStack {
+                        Label("MIDI Sources", systemImage: "powerplug")
+                        Spacer()
+                        Text("\(midi.sourceList.count)")
+                    }
+                }
+            }
+            Section("Subscription") {
+                if subscription.isSubscribed {
+                    NavigationLink(destination: ManageSubscriptionView()) {
+                        Label("Manage Subscription", systemImage: "crown")
+                    }
+                } else {
+                    Button {
+                        showSubscriptionSheet.toggle()
+                    } label: {
+                        Label("Upgrade to Pro", systemImage: "crown")
+                    }
+                }
+                Button("Restore Purchases") {
+                    Task {
+                        await subscription.restorePurchases()
+                    }
+                }
+            }
+            
+            Section("Info")  {
+                NavigationLink(destination: ContactUsView()) {
+                    Label("Contact Us", systemImage: "envelope")
+                }
+                NavigationLink(destination: AboutView()) {
+                    Label("About", systemImage: "info.circle")
+                }
+                
+                HStack {
+                    Label("Version", systemImage: "hammer")
+                    Spacer()
+                    Text("\(Bundle.main.appVersion) (\(Bundle.main.appBuild))")
+                        .foregroundStyle(.secondary)
+                }
+            }
+            
+            if let url = URL(string: "https://apps.apple.com/us/app/chord-studio/id6749439732") {
+                ShareLink(item: url) {
+                    Label("Share App", systemImage: "heart")
+                }
+            }
+        }
+        .subscriptionSheet(isPresented: $showSubscriptionSheet)
+        .toolbarCloseButton(dismiss: dismiss)
+        .navigationTitle("Settings")
+        .inlineNavigationTitle()
+        
+    }
+}
+
+let availableAccentColors: [String: Color?] = [
+    "Default": nil,
+    "Blue": .blue,
+    "Red": .red,
+    "Green": .green.mix(with: .white, by: 0.1),
+    "Orange": .orange.mix(with: .white, by: 0.1),
+    "Yellow": .yellow,
+    "Pink": .pink.mix(with: .white, by: 0.2),
+    "Purple": .purple.mix(with: .white, by: 0.1),
+    "Brown": .brown,
+    "Cyan": .cyan
+]
+
+let voicingLevels: [Int: (description: String, note: Note)] = [
+     -3    :   (description: "Lower"        , note: Note(.B, 2)),
+     -2    :   (description: "Low"          , note: Note(.D, 3)),
+     -1    :   (description: "Medium-low"   , note: Note(.F, 3)),
+     0     :   (description: "Medium"       , note: Note(.G, 3)),
+     1     :   (description: "Medium-high"  , note: Note(.A, 3)),
+     2     :   (description: "High"         , note: Note(.C, 4)),
+     3     :   (description: "Higher"       , note: Note(.Ds, 4)),
+]
+    
+
+
+extension Bundle {
+    var appVersion: String {
+        infoDictionary?["CFBundleShortVersionString"] as? String ?? "-"
+    }
+
+    var appBuild: String {
+        infoDictionary?["CFBundleVersion"] as? String ?? "-"
+    }
+}
+
+
+#Preview  {
+    @Previewable let audio = AudioManager()
+    @Previewable @State var midi = MIDIManager()
+    @Previewable @State var subscription = SubscriptionManager()
+    
+    SettingsView()
+        
+        .environment(\.audio, audio)
+        .environment(midi)
+        .environment(subscription)
+}
+
