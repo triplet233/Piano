@@ -83,35 +83,6 @@ struct SettingsView: View {
                 }
                 
             }
-            Section("Songwriting Mode") {
-
-                TextField("Composer Name", text: $composerName)
-                Picker(selection: $defaultSongBPM) {
-                    ForEach(Constants.bpmRange, id: \.self) { option in
-                        Text(String(option))
-                            .tag(Double(option))
-                    }
-                } label: {
-                    Label("Tempo", systemImage: "metronome")
-                }
-
-                Picker(selection: $defaultSongKey) {
-                    ForEach(PitchClass.allCases.map { $0.rawValue }, id: \.self) { option in
-                        Text(PitchClass(rawValue: option)?.description ?? "")
-                    }
-                } label: {
-                    Label("Key", systemImage: "music.note")
-                }
-                Picker(selection: $defaultEditMode) {
-                    ForEach(ChordSelectorMode.allCases.map { $0.rawValue }, id: \.self) { option in
-                        Text(option)
-                            .subscriptionIcon(show: option == "advanced")
-                    }
-                } label: {
-                    Label("Edit Mode", systemImage: "pencil.circle")
-                }
-                .onSubscriptionGatedChange($showSubscriptionSheet, of: $defaultEditMode) { $0 == "advanced" }
-            }
             
             Section("App") {
                 Picker(selection: $appColorScheme) {
@@ -142,11 +113,9 @@ struct SettingsView: View {
                     }
                 }
             }
-            Section("Subscription") {
+            Section("Upgrade") {
                 if subscription.isSubscribed {
-                    NavigationLink(destination: ManageSubscriptionView()) {
-                        Label("Manage Subscription", systemImage: "crown")
-                    }
+                    Text("Piano Pro is active.")
                 } else {
                     Button {
                         showSubscriptionSheet.toggle()
@@ -177,11 +146,11 @@ struct SettingsView: View {
                 }
             }
             
-            if let url = URL(string: "https://apps.apple.com/us/app/chord-studio/id6749439732") {
-                ShareLink(item: url) {
-                    Label("Share App", systemImage: "heart")
-                }
-            }
+//            if let url = URL(string: "https://apps.apple.com/us/app/chord-studio/id6749439732") {
+//                ShareLink(item: url) {
+//                    Label("Share App", systemImage: "heart")
+//                }
+//            }
         }
         .subscriptionSheet(isPresented: $showSubscriptionSheet)
         .toolbarCloseButton(dismiss: dismiss)
@@ -203,18 +172,6 @@ let availableAccentColors: [String: Color?] = [
     "Brown": .brown,
     "Cyan": .cyan
 ]
-
-let voicingLevels: [Int: (description: String, note: Note)] = [
-     -3    :   (description: "Lower"        , note: Note(.B, 2)),
-     -2    :   (description: "Low"          , note: Note(.D, 3)),
-     -1    :   (description: "Medium-low"   , note: Note(.F, 3)),
-     0     :   (description: "Medium"       , note: Note(.G, 3)),
-     1     :   (description: "Medium-high"  , note: Note(.A, 3)),
-     2     :   (description: "High"         , note: Note(.C, 4)),
-     3     :   (description: "Higher"       , note: Note(.Ds, 4)),
-]
-    
-
 
 extension Bundle {
     var appVersion: String {

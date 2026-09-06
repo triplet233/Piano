@@ -4,8 +4,10 @@ enum Difficulty: String, CaseIterable {
     case easy, medium, hard, impossible
     var leaderboardID: String {
         switch self {
-        case .medium: "medium2"
-        default: self.rawValue
+        case .easy: "grp.easy_gdfs"
+        case .medium: "grp.medium_dfsdfs"
+        case .hard: "grp.hard_uefiw"
+        case .impossible: "grp.impossible_dsfdfsa"
         }
         
     }

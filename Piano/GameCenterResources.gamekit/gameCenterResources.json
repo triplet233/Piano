@@ -1,0 +1,237 @@
+{
+  "meta" : {
+    "version" : "2024-11-15"
+  },
+  "resources" : {
+    "leaderboardImages" : {
+      "grp.easy_gdfs-en-US" : [
+        {
+          "localID" : "grp.easy_gdfs-en-US",
+          "url" : "en-US\/LeaderboardImage-grp.easy_gdfs-en-US.png"
+        }
+      ],
+      "grp.easy_gdfs-zh-Hans" : [
+        {
+          "localID" : "grp.easy_gdfs-zh-Hans",
+          "url" : "zh-Hans\/LeaderboardImage-grp.easy_gdfs-zh-Hans.png"
+        }
+      ],
+      "grp.hard_uefiw-en-US" : [
+        {
+          "localID" : "grp.hard_uefiw-en-US",
+          "url" : "en-US\/LeaderboardImage-grp.hard_uefiw-en-US.png"
+        }
+      ],
+      "grp.hard_uefiw-zh-Hans" : [
+        {
+          "localID" : "grp.hard_uefiw-zh-Hans",
+          "url" : "zh-Hans\/LeaderboardImage-grp.hard_uefiw-zh-Hans.png"
+        }
+      ],
+      "grp.impossible_dsfdfsa-en-US" : [
+        {
+          "localID" : "grp.impossible_dsfdfsa-en-US",
+          "url" : "en-US\/LeaderboardImage-grp.impossible_dsfdfsa-en-US.png"
+        }
+      ],
+      "grp.impossible_dsfdfsa-zh-Hans" : [
+        {
+          "localID" : "grp.impossible_dsfdfsa-zh-Hans",
+          "url" : "zh-Hans\/LeaderboardImage-grp.impossible_dsfdfsa-zh-Hans.png"
+        }
+      ],
+      "grp.medium_dfsdfs-en-US" : [
+        {
+          "localID" : "grp.medium_dfsdfs-en-US",
+          "url" : "en-US\/LeaderboardImage-grp.medium_dfsdfs-en-US.png"
+        }
+      ],
+      "grp.medium_dfsdfs-zh-Hans" : [
+        {
+          "localID" : "grp.medium_dfsdfs-zh-Hans",
+          "url" : "zh-Hans\/LeaderboardImage-grp.medium_dfsdfs-zh-Hans.png"
+        }
+      ],
+      "grp.medium_fdvs-en-US" : [
+        {
+          "localID" : "grp.medium_fdvs-en-US",
+          "url" : "en-US\/LeaderboardImage-grp.medium_fdvs-en-US.png"
+        }
+      ],
+      "grp.medium_fdvs-zh-Hans" : [
+        {
+          "localID" : "grp.medium_fdvs-zh-Hans",
+          "url" : "zh-Hans\/LeaderboardImage-grp.medium_fdvs-zh-Hans.png"
+        }
+      ]
+    },
+    "leaderboardLocalizations" : {
+      "grp.easy_gdfs" : [
+        {
+          "locale" : "en-US",
+          "localID" : "grp.easy_gdfs-en-US",
+          "name" : "Easy"
+        },
+        {
+          "locale" : "zh-Hans",
+          "localID" : "grp.easy_gdfs-zh-Hans",
+          "name" : "简单"
+        }
+      ],
+      "grp.hard_uefiw" : [
+        {
+          "locale" : "en-US",
+          "localID" : "grp.hard_uefiw-en-US",
+          "name" : "Hard"
+        },
+        {
+          "locale" : "zh-Hans",
+          "localID" : "grp.hard_uefiw-zh-Hans",
+          "name" : "困难"
+        }
+      ],
+      "grp.impossible_dsfdfsa" : [
+        {
+          "locale" : "en-US",
+          "localID" : "grp.impossible_dsfdfsa-en-US",
+          "name" : "Impossible"
+        },
+        {
+          "locale" : "zh-Hans",
+          "localID" : "grp.impossible_dsfdfsa-zh-Hans",
+          "name" : "地狱"
+        }
+      ],
+      "grp.medium_dfsdfs" : [
+        {
+          "locale" : "en-US",
+          "localID" : "grp.medium_dfsdfs-en-US",
+          "name" : "Medium"
+        },
+        {
+          "locale" : "zh-Hans",
+          "localID" : "grp.medium_dfsdfs-zh-Hans",
+          "name" : "普通"
+        }
+      ],
+      "grp.medium_fdvs" : [
+        {
+          "locale" : "en-US",
+          "localID" : "grp.medium_fdvs-en-US",
+          "name" : "Medium"
+        },
+        {
+          "locale" : "zh-Hans",
+          "localID" : "grp.medium_fdvs-zh-Hans",
+          "name" : "中等"
+        }
+      ]
+    },
+    "leaderboards" : [
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Easy",
+        "scoreRangeEnd" : "999",
+        "scoreRangeStart" : "0",
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "grp.easy_gdfs",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Medium2",
+        "scoreRangeEnd" : "999",
+        "scoreRangeStart" : "0",
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "grp.medium_fdvs",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Hard",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "grp.hard_uefiw",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Impossible",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "grp.impossible_dsfdfsa",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Medium",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "grp.medium_dfsdfs",
+        "visibility" : "SHOW_FOR_ALL"
+      }
+    ],
+    "leaderboardSetLocalizations" : {
+      "grp.1" : [
+        {
+          "locale" : "en-US",
+          "localID" : "grp.1-en-US",
+          "name" : "Chord Challenge"
+        },
+        {
+          "locale" : "zh-Hans",
+          "localID" : "grp.1-zh-Hans",
+          "name" : "和弦挑战"
+        }
+      ]
+    },
+    "leaderboardSetMemberships" : {
+      "grp.1" : [
+        {
+          "leaderboardLocalIDs" : [
+            "grp.easy_gdfs",
+            "grp.medium_fdvs",
+            "grp.hard_uefiw",
+            "grp.impossible_dsfdfsa",
+            "grp.medium_dfsdfs"
+          ],
+          "localID" : "grp.1"
+        }
+      ]
+    },
+    "leaderboardSets" : [
+      {
+        "referenceName" : "Chord Challenge",
+        "vendorIdentifier" : "grp.1"
+      }
+    ]
+  }
+}

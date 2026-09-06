@@ -16,7 +16,7 @@ struct WelcomeView: View {
                 Text("👋")
                     .font(.system(size: 50))
                 
-                Text("Welcome to Chord Studio")
+                Text("Welcome to the Piano App")
                     .font(.largeTitle)
                     .fontWeight(.bold)
             }
@@ -25,12 +25,10 @@ struct WelcomeView: View {
             
             List {
                 FeatureRowView(icon: "pianokeys", title: String(localized: "Real-Time Chord Recognition"))
-                FeatureRowView(icon: "book.pages", title: String(localized: "Write Songs"))
-                FeatureRowView(icon: "guitars", title: String(localized: "A Variety of Instruments & Styles"))
                 FeatureRowView(icon: "text.book.closed", title: String(localized: "Chord Dictionary"))
                 FeatureRowView(icon: "powerplug", title: String(localized: "MIDI Support"))
                 FeatureRowView(icon: "trophy", title: String(localized: "Challenge Mode"))
-//                        FeatureRowView(icon: "cloud", title: String(localized: "Automatic iCloud Sync"))
+                FeatureRowView(icon: "guitars", title: String(localized: "A Variety of Instruments"))
             }
             .scrollContentBackground(.hidden)
             

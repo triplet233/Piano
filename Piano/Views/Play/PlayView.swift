@@ -13,10 +13,20 @@ struct PlayView: View {
             case .challenge: "trophy.fill"
             }
         }
+        var title: String {
+            switch self {
+            case .keyboardAndChord: "Keyboard"
+            case .chord: "Chord Monitor"
+            case .learn: "Dictionary"
+            case .challenge: "Challenge"
+            }
+        }
     }
     @State private var vpiano = VirtualPianoManager()
     @State private var challenge = ChallengeManager()
     
+    @State private var showSettingsSheet: Bool = false
+    @State private var showSubscriptionSheet: Bool = false
     @State private var showChallengeSheet: Bool = false
     @State private var selectedScreen: Screen = .keyboardAndChord
     
@@ -125,6 +135,12 @@ struct PlayView: View {
                     .transition(.move(edge: .bottom))
             }
         }
+        .subscriptionSheet(isPresented: $showSubscriptionSheet)
+        .sheet(isPresented: $showSettingsSheet) {
+            NavigationStack {
+                SettingsView()
+            }
+        }
         .toolbar {
             ToolbarItemGroup {
                 Button {
@@ -175,12 +191,29 @@ struct PlayView: View {
                 }
                 .help("Challenge")
             }
+            ToolbarSpacer()
+            ToolbarItemGroup {
+                Button {
+                    showSubscriptionSheet.toggle()
+                } label: {
+                    Image(systemName: "crown")
+                }
+                .help("Subscription")
+                
+                
+                Button {
+                    showSettingsSheet.toggle()
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+                .help("Settings")
+            }
         }
  
         .ignoresSafeArea(.container, edges: [.bottom])
         .background(Color.secondary.opacity(0.1))
         .iOSDefersSystemGesturesOnBottom(shouldDefer: selectedScreen == .keyboardAndChord)
-        .navigationTitle("Play")
+        .navigationTitle(Text(LocalizedStringKey(selectedScreen.title)))
         .inlineNavigationTitle()
     }
 }
