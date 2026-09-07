@@ -33,7 +33,7 @@ struct SettingsView: View {
             Section("Play Mode") {
                 
                 Picker(selection: $instrument) {
-                    ForEach(Instrument.allCases.filter { $0.isChord || $0.isMelodic }, id: \.self) { instrument in
+                    ForEach(Instrument.allCases, id: \.self) { instrument in
                         Text(LocalizedStringKey(instrument.description))
                             .subscriptionIcon(show: instrument.subscriptionRequired)
                             .tag(instrument.rawValue)
