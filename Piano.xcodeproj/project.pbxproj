@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B3D37A5B304C73FB00FC533F /* Piano: Identify Chords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Piano: Identify Chords.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3D37A5B304C73FB00FC533F /* Piano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Piano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D37A68304C73FC00FC533F /* PianoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PianoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D37A72304C73FC00FC533F /* PianoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PianoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D37BF3304C7A7000FC533F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -105,7 +105,7 @@
 		B3D37A5C304C73FB00FC533F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B3D37A5B304C73FB00FC533F /* Piano: Identify Chords.app */,
+				B3D37A5B304C73FB00FC533F /* Piano.app */,
 				B3D37A68304C73FC00FC533F /* PianoTests.xctest */,
 				B3D37A72304C73FC00FC533F /* PianoUITests.xctest */,
 			);
@@ -142,7 +142,7 @@
 			packageProductDependencies = (
 			);
 			productName = Piano;
-			productReference = B3D37A5B304C73FB00FC533F /* Piano: Identify Chords.app */;
+			productReference = B3D37A5B304C73FB00FC533F /* Piano.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B3D37A67304C73FC00FC533F /* PianoTests */ = {
@@ -441,6 +441,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Piano/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Piano;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -458,7 +459,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = sh3l6orrr.Piano;
-				PRODUCT_NAME = "Piano: Identify Chords";
+				PRODUCT_NAME = Piano;
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -498,6 +499,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Piano/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Piano;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -515,7 +517,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = sh3l6orrr.Piano;
-				PRODUCT_NAME = "Piano: Identify Chords";
+				PRODUCT_NAME = Piano;
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
