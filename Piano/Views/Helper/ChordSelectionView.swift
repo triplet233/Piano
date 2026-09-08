@@ -151,10 +151,11 @@ struct ChordSelectorView: View {
                             }
                         }
                     }
-                    if mode != .wheel {
-                        Spacer()
-                        Text("Bass")
-                    }
+                    Spacer()
+//                    if mode != .wheel {
+//
+//                        Text("Bass")
+//                    }
                     VStack {
                         if mode == .wheel {
                             Text("Bass")

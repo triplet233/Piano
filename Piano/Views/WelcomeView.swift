@@ -24,7 +24,8 @@ struct WelcomeView: View {
             
             
             List {
-                FeatureRowView(icon: "pianokeys", title: String(localized: "Real-Time Chord Recognition"))
+                FeatureRowView(icon: "pianokeys", title: String(localized: "Realistic Piano Sound"))
+                FeatureRowView(icon: "scope", title: String(localized: "Real-Time Chord Recognition"))
                 FeatureRowView(icon: "text.book.closed", title: String(localized: "Chord Dictionary"))
                 FeatureRowView(icon: "powerplug", title: String(localized: "MIDI Support"))
                 FeatureRowView(icon: "trophy", title: String(localized: "Challenge Mode"))

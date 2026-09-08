@@ -6,6 +6,7 @@ struct SettingsView: View {
     @AppStorage("instrument") var instrument: String = "grand"
     @AppStorage("keyboardVelocity") var keyboardVelocity: Double = 0.7
     @AppStorage("rolledChord") var rolledChord: Bool = false
+    @AppStorage("identifyMultipleChords") var identifyMultipleChords: Bool = false
     @AppStorage("metronomeBPM") var metronomeBPM: Double = 90
     @AppStorage("playModeKey") var playModeKey: String = "C"
     @AppStorage("keyboardGain") var keyboardGain: Double = 0.0
@@ -30,7 +31,7 @@ struct SettingsView: View {
     var body: some View {
         
         Form {
-            Section("Play Mode") {
+            Section {
                 
                 Picker(selection: $instrument) {
                     ForEach(Instrument.allCases, id: \.self) { instrument in
@@ -59,25 +60,44 @@ struct SettingsView: View {
                 Picker(selection: $playModeKey) {
                     ForEach(PitchClass.allCases, id: \.self) { key in
                         Text(key.description)
+                            .subscriptionIcon(show: key != .C)
                             .tag(key.rawValue)
                     }
                 } label: {
                     Label("Key", systemImage: "music.note")
                 }
-                .onChange(of: playModeKey) { _, newValue in
+                .onSubscriptionGatedChange($showSubscriptionSheet, of: $playModeKey) {
+                    $0 != PitchClass.C.rawValue
+                } onAccepted: { newValue in
                     appState.setPlayModeKey(newValue)
                 }
                 
                 Toggle(isOn: $rolledChord) {
                     Label("Rolled Chord", systemImage: "music.quarternote.3")
+                        .subscriptionIcon(show: true)
+                }
+                .onSubscriptionGatedChange($showSubscriptionSheet, of: $rolledChord) {
+                    $0 == true
+                }
+                
+                Toggle(isOn: $identifyMultipleChords) {
+                    Label("Identify Multiple Chords", systemImage: "circle.grid.2x2")
+                        .subscriptionIcon(show: true)
+                }
+                .onSubscriptionGatedChange($showSubscriptionSheet, of: $identifyMultipleChords) {
+                    $0 == true
+                } onAccepted: { newValue in
+                    appState.setIdentifyMultipleChords(newValue)
                 }
                 
                 VolumeView(label: Text("Keyboard"), range: -12...6, volume: $keyboardGain)
+                    .frame(minHeight: 12)
                 .onChange(of: keyboardGain) { _, newValue in
                     audio.sampler.setGain(Float(newValue))
                 }
 
                 VolumeView(label: Text("Metronome"), range: -12...6, volume: $metronomeGain)
+                    .frame(minHeight: 12)
                 .onChange(of: metronomeGain) { _, newValue in
                     audio.metronome.setGain(Float(newValue))
                 }

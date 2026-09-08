@@ -18,7 +18,7 @@ nonisolated(unsafe) let defaultSettings: [String: Any] = [
     "defaultSongBPM": 80,
     "defaultSongKey": "C",
     "defaultEditMode": ChordSelectorMode.defaultMode.rawValue,
-
+    
     "countIn": false,
     "humanize": false,
     "voicingLevel": 0

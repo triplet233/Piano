@@ -13,10 +13,10 @@ struct PlayView: View {
             case .challenge: "trophy.fill"
             }
         }
-        var title: String {
+        var title: LocalizedStringKey {
             switch self {
             case .keyboardAndChord: "Keyboard"
-            case .chord: "Chord Monitor"
+            case .chord: "Monitor"
             case .learn: "Dictionary"
             case .challenge: "Challenge"
             }
@@ -190,16 +190,7 @@ struct PlayView: View {
                     Image(systemName: selectedScreen == .challenge ? Screen.challenge.icon : "trophy")
                 }
                 .help("Challenge")
-            }
-            ToolbarSpacer()
-            ToolbarItemGroup {
-                Button {
-                    showSubscriptionSheet.toggle()
-                } label: {
-                    Image(systemName: "crown")
-                }
-                .help("Subscription")
-                
+            
                 
                 Button {
                     showSettingsSheet.toggle()
@@ -213,7 +204,7 @@ struct PlayView: View {
         .ignoresSafeArea(.container, edges: [.bottom])
         .background(Color.secondary.opacity(0.1))
         .iOSDefersSystemGesturesOnBottom(shouldDefer: selectedScreen == .keyboardAndChord)
-        .navigationTitle(Text(LocalizedStringKey(selectedScreen.title)))
+        .navigationTitle(Text(selectedScreen.title))
         .inlineNavigationTitle()
     }
 }

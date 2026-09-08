@@ -12,8 +12,14 @@ struct ChordRecognizerView: View {
     @Environment(\.appState) private var appState
     
     var chords: [Chord] {
-        Chord.chordsFrom(midiNotes: vpiano.highlightedMidiNotes, in: appState.playModeKey)
-        
+        let detectedChords = Chord.chordsFrom(
+            midiNotes: vpiano.highlightedMidiNotes,
+            in: appState.playModeKey
+        )
+
+        return appState.identifyMultipleChords
+            ? detectedChords
+            : Array(detectedChords.prefix(1))
     }
     
     var body: some View {

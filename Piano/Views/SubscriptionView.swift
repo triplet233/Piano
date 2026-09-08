@@ -30,10 +30,14 @@ struct SubscriptionView: View {
             
             List {
                 FeatureRowView(icon: "guitars", title: String(localized: "More Instruments & Styles")) {
-                    Text("• More instruments")
+                    Text("• Unlock Electric Piano, Marimba, and Organ")
                     Text("• Unlock rolled chords")
                 }
-                FeatureRowView(icon: "paintbrush", title: String(localized: "Additonal Features")) {
+                FeatureRowView(icon: "scope", title: String(localized: "More Chord Identification Options")) {
+                    Text("• Identify multiple chords simultaneously")
+                    Text("• Identify chords in a selected key")
+                }
+                FeatureRowView(icon: "paintbrush", title: String(localized: "Customization")) {
                     Text("• Unlock more theme colors")
                 }
             }
