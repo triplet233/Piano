@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B3D37A5A304C73FB00FC533F"
-               BuildableName = "Piano: Identify Chords.app"
+               BuildableName = "Piano.app"
                BlueprintName = "Piano"
                ReferencedContainer = "container:Piano.xcodeproj">
             </BuildableReference>
@@ -58,6 +58,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = "en"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -70,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B3D37A5A304C73FB00FC533F"
-            BuildableName = "Piano: Identify Chords.app"
+            BuildableName = "Piano.app"
             BlueprintName = "Piano"
             ReferencedContainer = "container:Piano.xcodeproj">
          </BuildableReference>
@@ -90,7 +91,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B3D37A5A304C73FB00FC533F"
-            BuildableName = "Piano: Identify Chords.app"
+            BuildableName = "Piano.app"
             BlueprintName = "Piano"
             ReferencedContainer = "container:Piano.xcodeproj">
          </BuildableReference>

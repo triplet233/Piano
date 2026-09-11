@@ -1,6 +1,6 @@
 {
   "fill" : {
-    "automatic-gradient" : "display-p3:0.48289,0.58374,0.70431,1.00000",
+    "automatic-gradient" : "display-p3:0.21795,0.61902,0.70431,1.00000",
     "orientation" : {
       "start" : {
         "x" : 0.5,
@@ -17,6 +17,7 @@
       "blur-material" : 0.5,
       "layers" : [
         {
+          "hidden" : false,
           "image-name" : "piano-svgrepo-com.svg",
           "name" : "piano-svgrepo-com",
           "position" : {
