@@ -58,6 +58,11 @@ struct Chord_MasterApp: App {
          Settings {
              SettingsView()
          }
+         .environment(\.audio, audio)
+         .environment(\.touchPlay, touchPlay)
+         .environment(\.appState, appState)
+         .environment(midi)
+         .environment(subscription)
 #endif
     }
     
